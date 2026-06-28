@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_549c50d218dcc909874175895c8e26cc {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.css"/>
+</head>
+<body>
+    
+    
+<div style="
+    position: fixed;
+    bottom: 30px; right: 15px;
+    z-index: 1000;
+    background-color: white;
+    border: 2px solid #03045E;
+    border-radius: 10px;
+    padding: 12px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+    max-width: 220px;
+">
+<div style="background:#03045E; color:white; padding:6px 10px;
+     margin:-12px -12px 8px -12px; border-radius:8px 8px 0 0;
+     font-weight:bold; font-size:13px">
+    🛰️ HTIP — BAH 2026
+</div>
+
+<b style="color:#E85D04">🌾 CROP MAP</b>
+<br>
+<span style="background:#2D6A4F;color:white;
+     padding:1px 6px; border-radius:3px">■</span>
+Wheat (89.2% acc.)<br>
+<span style="background:#F4D03F;color:black;
+     padding:1px 6px; border-radius:3px">■</span>
+Mustard<br>
+<span style="background:#A0522D;color:white;
+     padding:1px 6px; border-radius:3px">■</span>
+Fallow<br>
+<span style="background:#808080;color:white;
+     padding:1px 6px; border-radius:3px">■</span>
+Other<br>
+
+<hr style="margin:6px 0">
+<b style="color:#E85D04">🌡️ STRESS MAP</b><br>
+<span style="color:#2D6A4F">●</span> No Stress (MSI>0.45)<br>
+<span style="color:#F4A261">●</span> Mild (MSI 0.25-0.45)<br>
+<span style="color:#D62828">●</span> Severe (MSI<0.25)<br>
+
+<hr style="margin:6px 0">
+<b style="color:#E85D04">💧 ADVISORY</b><br>
+🔵 No irrigation needed<br>
+🟢 Light (5-15mm/wk)<br>
+🟠 Moderate (15-30mm/wk)<br>
+🔴 URGENT (>30mm/wk)<br>
+
+<hr style="margin:6px 0">
+<small style="color:gray">
+ET₀=4.2mm/day (IMD, Feb UP)<br>
+FAO-56 | Sentinel-1+2 | RF 89.2% | ISRO Bhuvan
+</small>
+</div>
+    
+<div style="
+    position: fixed;
+    top: 10px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background: #03045E;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+    text-align: center;
+">
+    🛰️ HTIP — Himalayan Terrace Intelligence Platform
+    <br>
+    <span style="font-size:11px; font-weight:normal; color:#90E0EF">
+    BAH 2026 | Challenge 6 | Canal Command Area, Western UP
+| Crop Acc: 89.2% | Sentinel-1+2 | FAO-56 | ISRO Bhuvan Integrated
+    </span>
+</div>
+    
+<div style="
+    position: fixed;
+    top: 80px; left: 10px;
+    z-index: 1000;
+    background: white;
+    border: 2px solid #0077B6;
+    border-radius: 8px;
+    padding: 10px;
+    font-family: Arial;
+    font-size: 11px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+    max-width: 180px;
+">
+<b style="color:#03045E; font-size:12px">
+    📊 Pipeline Results</b><br>
+<hr style="margin:4px 0">
+<b>Phase 1: Crop Mapping</b><br>
+✅ Accuracy: 89.2%<br>
+✅ Kappa: 0.854<br>
+✅ 30-band RF (200 trees)<br>
+<br>
+<b>Phase 2: Stress Detection</b><br>
+✅ 15 Sentinel-1 scenes<br>
+✅ SAR + Optical fusion<br>
+✅ MSI = 5-indicator blend<br>
+<br>
+<b>Phase 3: Advisory</b><br>
+✅ FAO-56 ETc model<br>
+✅ ET₀ = 4.2 mm/day<br>
+✅ Pixel-level output<br>
+<hr style="margin:4px 0">
+<small style="color:gray">
+Data: Sentinel-1, Sentinel-2<br>
+Period: Oct 2024 – Mar 2025<br>
+Area: 1°×1° Canal Command
+</small>
+</div>
+    
+            <div class="folium-map" id="map_549c50d218dcc909874175895c8e26cc" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_549c50d218dcc909874175895c8e26cc = L.map(
+                "map_549c50d218dcc909874175895c8e26cc",
+                {
+                    center: [28.0, 78.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_c0b9f579e2b74eb95197a5f9ae3e7db8 = L.tileLayer(
+                "https://mt1.google.com/vt/lyrs=s\u0026x={x}\u0026y={y}\u0026z={z}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Google Satellite",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_c0b9f579e2b74eb95197a5f9ae3e7db8.addTo(map_549c50d218dcc909874175895c8e26cc);
+        
+    
+            var tile_layer_31da0a32acb3ac4684eb1ffe43bc2b13 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_31da0a32acb3ac4684eb1ffe43bc2b13.addTo(map_549c50d218dcc909874175895c8e26cc);
+        
+    
+            var tile_layer_2dc2a786d6b1428cc531504d4f8ad95d = L.tileLayer(
+                "https://bhuvan-tile1.nrsc.gov.in/bhuvan/tiles/1.0.0/india_map/default/GoogleMapsCompatible/{z}/{y}/{x}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "ISRO Bhuvan | NRSC India",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_2dc2a786d6b1428cc531504d4f8ad95d.addTo(map_549c50d218dcc909874175895c8e26cc);
+        
+    
+            var feature_group_7b679c0ec537cb3232404d5b63a7db48 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var rectangle_e1a250d33187343959bbdf4217b1c5a7 = L.rectangle(
+                [[27.6, 77.6], [27.8, 77.9]],
+                {"bubblingMouseEvents": true, "color": "#2D6A4F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2D6A4F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 0.5}
+            ).addTo(feature_group_7b679c0ec537cb3232404d5b63a7db48);
+        
+    
+        var popup_910dd657f7f310b61760de5d5c2c2010 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_4b3e1a4f1c3c4d8db86e6b2c551f990e = $(`<div id="html_4b3e1a4f1c3c4d8db86e6b2c551f990e" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:200px'>             <h4 style='color:#2D6A4F; margin:0'>🌾 Wheat</h4>             <hr style='margin:4px'>             <b>Crop Type:</b> Wheat<br>             <b>Kc (FAO-56):</b> 1.15<br>             <b>Season:</b> Rabi 2024-25<br>             <b>Classifier:</b> Random Forest<br>             <b>Accuracy:</b> 89.2% ✅             </div>         </div>`)[0];
+                popup_910dd657f7f310b61760de5d5c2c2010.setContent(html_4b3e1a4f1c3c4d8db86e6b2c551f990e);
+            
+        
+
+        rectangle_e1a250d33187343959bbdf4217b1c5a7.bindPopup(popup_910dd657f7f310b61760de5d5c2c2010)
+        ;
+
+        
+    
+    
+            rectangle_e1a250d33187343959bbdf4217b1c5a7.bindTooltip(
+                `<div>
+                     🌾 Wheat — Click for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var rectangle_bc0e5e040d0acb2a82a778786f7377c6 = L.rectangle(
+                [[27.8, 77.7], [28.0, 78.0]],
+                {"bubblingMouseEvents": true, "color": "#2D6A4F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2D6A4F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 0.5}
+            ).addTo(feature_group_7b679c0ec537cb3232404d5b63a7db48);
+        
+    
+        var popup_3967c7e1039e28d7d454dd980d1bec92 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_740d1d87531a38a4ccee331b7c216439 = $(`<div id="html_740d1d87531a38a4ccee331b7c216439" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:200px'>             <h4 style='color:#2D6A4F; margin:0'>🌾 Wheat</h4>             <hr style='margin:4px'>             <b>Crop Type:</b> Wheat<br>             <b>Kc (FAO-56):</b> 1.15<br>             <b>Season:</b> Rabi 2024-25<br>             <b>Classifier:</b> Random Forest<br>             <b>Accuracy:</b> 89.2% ✅             </div>         </div>`)[0];
+                popup_3967c7e1039e28d7d454dd980d1bec92.setContent(html_740d1d87531a38a4ccee331b7c216439);
+            
+        
+
+        rectangle_bc0e5e040d0acb2a82a778786f7377c6.bindPopup(popup_3967c7e1039e28d7d454dd980d1bec92)
+        ;
+
+        
+    
+    
+            rectangle_bc0e5e040d0acb2a82a778786f7377c6.bindTooltip(
+                `<div>
+                     🌾 Wheat — Click for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var rectangle_3518a1f873c86e1cf1a302d8a933a76f = L.rectangle(
+                [[28.0, 77.8], [28.2, 78.2]],
+                {"bubblingMouseEvents": true, "color": "#2D6A4F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2D6A4F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 0.5}
+            ).addTo(feature_group_7b679c0ec537cb3232404d5b63a7db48);
+        
+    
+        var popup_6ae2e8fdf178aa6b34ad6274b14fe84d = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_fea6ae0797f84dfa32ea7b8a70e99ab2 = $(`<div id="html_fea6ae0797f84dfa32ea7b8a70e99ab2" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:200px'>             <h4 style='color:#2D6A4F; margin:0'>🌾 Wheat</h4>             <hr style='margin:4px'>             <b>Crop Type:</b> Wheat<br>             <b>Kc (FAO-56):</b> 1.15<br>             <b>Season:</b> Rabi 2024-25<br>             <b>Classifier:</b> Random Forest<br>             <b>Accuracy:</b> 89.2% ✅             </div>         </div>`)[0];
+                popup_6ae2e8fdf178aa6b34ad6274b14fe84d.setContent(html_fea6ae0797f84dfa32ea7b8a70e99ab2);
+            
+        
+
+        rectangle_3518a1f873c86e1cf1a302d8a933a76f.bindPopup(popup_6ae2e8fdf178aa6b34ad6274b14fe84d)
+        ;
+
+        
+    
+    
+            rectangle_3518a1f873c86e1cf1a302d8a933a76f.bindTooltip(
+                `<div>
+                     🌾 Wheat — Click for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var rectangle_1232f422ea24a19e7c4d991b0486ca4b = L.rectangle(
+                [[28.2, 77.9], [28.4, 78.4]],
+                {"bubblingMouseEvents": true, "color": "#2D6A4F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2D6A4F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 0.5}
+            ).addTo(feature_group_7b679c0ec537cb3232404d5b63a7db48);
+        
+    
+        var popup_19b4e99ecb82a33b49fe042de22a21ba = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_c4285c9f07c2bafc442bd6b0ee2c9085 = $(`<div id="html_c4285c9f07c2bafc442bd6b0ee2c9085" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:200px'>             <h4 style='color:#2D6A4F; margin:0'>🌾 Wheat</h4>             <hr style='margin:4px'>             <b>Crop Type:</b> Wheat<br>             <b>Kc (FAO-56):</b> 1.15<br>             <b>Season:</b> Rabi 2024-25<br>             <b>Classifier:</b> Random Forest<br>             <b>Accuracy:</b> 89.2% ✅             </div>         </div>`)[0];
+                popup_19b4e99ecb82a33b49fe042de22a21ba.setContent(html_c4285c9f07c2bafc442bd6b0ee2c9085);
+            
+        
+
+        rectangle_1232f422ea24a19e7c4d991b0486ca4b.bindPopup(popup_19b4e99ecb82a33b49fe042de22a21ba)
+        ;
+
+        
+    
+    
+            rectangle_1232f422ea24a19e7c4d991b0486ca4b.bindTooltip(
+                `<div>
+                     🌾 Wheat — Click for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var rectangle_8cdb76513f0f0080202bba93a0ca0c74 = L.rectangle(
+                [[27.5, 77.5], [27.7, 77.8]],
+                {"bubblingMouseEvents": true, "color": "#F4D03F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F4D03F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 0.5}
+            ).addTo(feature_group_7b679c0ec537cb3232404d5b63a7db48);
+        
+    
+        var popup_231ea6978be6bcc7f483696425129dae = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_4c96088fb81eb71b2162f578c9cca69b = $(`<div id="html_4c96088fb81eb71b2162f578c9cca69b" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:200px'>             <h4 style='color:#F4D03F; margin:0'>🌾 Mustard</h4>             <hr style='margin:4px'>             <b>Crop Type:</b> Mustard<br>             <b>Kc (FAO-56):</b> 0.85<br>             <b>Season:</b> Rabi 2024-25<br>             <b>Classifier:</b> Random Forest<br>             <b>Accuracy:</b> 89.2% ✅             </div>         </div>`)[0];
+                popup_231ea6978be6bcc7f483696425129dae.setContent(html_4c96088fb81eb71b2162f578c9cca69b);
+            
+        
+
+        rectangle_8cdb76513f0f0080202bba93a0ca0c74.bindPopup(popup_231ea6978be6bcc7f483696425129dae)
+        ;
+
+        
+    
+    
+            rectangle_8cdb76513f0f0080202bba93a0ca0c74.bindTooltip(
+                `<div>
+                     🌾 Mustard — Click for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var rectangle_f61c04811bbaba0c58a111a1571eead8 = L.rectangle(
+                [[27.9, 78.1], [28.1, 78.4]],
+                {"bubblingMouseEvents": true, "color": "#F4D03F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F4D03F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 0.5}
+            ).addTo(feature_group_7b679c0ec537cb3232404d5b63a7db48);
+        
+    
+        var popup_dde39b0c508034b4167928e089a53c06 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_6d3e5d4f98370b7d312d8dfaff5dfff2 = $(`<div id="html_6d3e5d4f98370b7d312d8dfaff5dfff2" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:200px'>             <h4 style='color:#F4D03F; margin:0'>🌾 Mustard</h4>             <hr style='margin:4px'>             <b>Crop Type:</b> Mustard<br>             <b>Kc (FAO-56):</b> 0.85<br>             <b>Season:</b> Rabi 2024-25<br>             <b>Classifier:</b> Random Forest<br>             <b>Accuracy:</b> 89.2% ✅             </div>         </div>`)[0];
+                popup_dde39b0c508034b4167928e089a53c06.setContent(html_6d3e5d4f98370b7d312d8dfaff5dfff2);
+            
+        
+
+        rectangle_f61c04811bbaba0c58a111a1571eead8.bindPopup(popup_dde39b0c508034b4167928e089a53c06)
+        ;
+
+        
+    
+    
+            rectangle_f61c04811bbaba0c58a111a1571eead8.bindTooltip(
+                `<div>
+                     🌾 Mustard — Click for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var rectangle_44fa69358beca7aaaee0c2302c654b1d = L.rectangle(
+                [[28.3, 78.0], [28.5, 78.3]],
+                {"bubblingMouseEvents": true, "color": "#F4D03F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F4D03F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 0.5}
+            ).addTo(feature_group_7b679c0ec537cb3232404d5b63a7db48);
+        
+    
+        var popup_1b16d04689d31b88d51808d3813ce449 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_aa4b80391a36fdb9befcbd68dcbaf226 = $(`<div id="html_aa4b80391a36fdb9befcbd68dcbaf226" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:200px'>             <h4 style='color:#F4D03F; margin:0'>🌾 Mustard</h4>             <hr style='margin:4px'>             <b>Crop Type:</b> Mustard<br>             <b>Kc (FAO-56):</b> 0.85<br>             <b>Season:</b> Rabi 2024-25<br>             <b>Classifier:</b> Random Forest<br>             <b>Accuracy:</b> 89.2% ✅             </div>         </div>`)[0];
+                popup_1b16d04689d31b88d51808d3813ce449.setContent(html_aa4b80391a36fdb9befcbd68dcbaf226);
+            
+        
+
+        rectangle_44fa69358beca7aaaee0c2302c654b1d.bindPopup(popup_1b16d04689d31b88d51808d3813ce449)
+        ;
+
+        
+    
+    
+            rectangle_44fa69358beca7aaaee0c2302c654b1d.bindTooltip(
+                `<div>
+                     🌾 Mustard — Click for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var rectangle_090008e74d07602a56c05e9eb486d8c4 = L.rectangle(
+                [[27.6, 78.2], [27.8, 78.5]],
+                {"bubblingMouseEvents": true, "color": "#F4D03F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F4D03F", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 0.5}
+            ).addTo(feature_group_7b679c0ec537cb3232404d5b63a7db48);
+        
+    
+        var popup_b06f44c20e7af151806c63b73cc5d800 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_499562d8476b1e971304d6a11e5850f4 = $(`<div id="html_499562d8476b1e971304d6a11e5850f4" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:200px'>             <h4 style='color:#F4D03F; margin:0'>🌾 Mustard</h4>             <hr style='margin:4px'>             <b>Crop Type:</b> Mustard<br>             <b>Kc (FAO-56):</b> 0.85<br>             <b>Season:</b> Rabi 2024-25<br>             <b>Classifier:</b> Random Forest<br>             <b>Accuracy:</b> 89.2% ✅             </div>         </div>`)[0];
+                popup_b06f44c20e7af151806c63b73cc5d800.setContent(html_499562d8476b1e971304d6a11e5850f4);
+            
+        
+
+        rectangle_090008e74d07602a56c05e9eb486d8c4.bindPopup(popup_b06f44c20e7af151806c63b73cc5d800)
+        ;
+
+        
+    
+    
+            rectangle_090008e74d07602a56c05e9eb486d8c4.bindTooltip(
+                `<div>
+                     🌾 Mustard — Click for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var rectangle_128fb4efffed46edec050204d51eee02 = L.rectangle(
+                [[27.5, 78.0], [27.7, 78.3]],
+                {"bubblingMouseEvents": true, "color": "#A0522D", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#A0522D", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 0.5}
+            ).addTo(feature_group_7b679c0ec537cb3232404d5b63a7db48);
+        
+    
+        var popup_d85a114dd3399f67f9cdd5ccf75d874d = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_e2ec4aab1ade7f5add19a1b6a7885058 = $(`<div id="html_e2ec4aab1ade7f5add19a1b6a7885058" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:200px'>             <h4 style='color:#A0522D; margin:0'>🌾 Fallow</h4>             <hr style='margin:4px'>             <b>Crop Type:</b> Fallow<br>             <b>Kc (FAO-56):</b> 0.0<br>             <b>Season:</b> Rabi 2024-25<br>             <b>Classifier:</b> Random Forest<br>             <b>Accuracy:</b> 89.2% ✅             </div>         </div>`)[0];
+                popup_d85a114dd3399f67f9cdd5ccf75d874d.setContent(html_e2ec4aab1ade7f5add19a1b6a7885058);
+            
+        
+
+        rectangle_128fb4efffed46edec050204d51eee02.bindPopup(popup_d85a114dd3399f67f9cdd5ccf75d874d)
+        ;
+
+        
+    
+    
+            rectangle_128fb4efffed46edec050204d51eee02.bindTooltip(
+                `<div>
+                     🌾 Fallow — Click for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var rectangle_0b87f7cff0ecd9c78984dea4f658a036 = L.rectangle(
+                [[28.1, 77.5], [28.3, 77.8]],
+                {"bubblingMouseEvents": true, "color": "#A0522D", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#A0522D", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 0.5}
+            ).addTo(feature_group_7b679c0ec537cb3232404d5b63a7db48);
+        
+    
+        var popup_633439e0dfefcf2f177fc89e5b26ab3a = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_f3cad59bf8885023fe03ab467eb4c203 = $(`<div id="html_f3cad59bf8885023fe03ab467eb4c203" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:200px'>             <h4 style='color:#A0522D; margin:0'>🌾 Fallow</h4>             <hr style='margin:4px'>             <b>Crop Type:</b> Fallow<br>             <b>Kc (FAO-56):</b> 0.0<br>             <b>Season:</b> Rabi 2024-25<br>             <b>Classifier:</b> Random Forest<br>             <b>Accuracy:</b> 89.2% ✅             </div>         </div>`)[0];
+                popup_633439e0dfefcf2f177fc89e5b26ab3a.setContent(html_f3cad59bf8885023fe03ab467eb4c203);
+            
+        
+
+        rectangle_0b87f7cff0ecd9c78984dea4f658a036.bindPopup(popup_633439e0dfefcf2f177fc89e5b26ab3a)
+        ;
+
+        
+    
+    
+            rectangle_0b87f7cff0ecd9c78984dea4f658a036.bindTooltip(
+                `<div>
+                     🌾 Fallow — Click for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var rectangle_21bdb6598af951aaa43beebf9f3938d4 = L.rectangle(
+                [[28.3, 78.3], [28.5, 78.5]],
+                {"bubblingMouseEvents": true, "color": "#A0522D", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#A0522D", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 0.5}
+            ).addTo(feature_group_7b679c0ec537cb3232404d5b63a7db48);
+        
+    
+        var popup_a1989749f21a5e7eb365a2b9c87f4243 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_50da5bfdf7015d32a9220b8433432f6d = $(`<div id="html_50da5bfdf7015d32a9220b8433432f6d" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:200px'>             <h4 style='color:#A0522D; margin:0'>🌾 Fallow</h4>             <hr style='margin:4px'>             <b>Crop Type:</b> Fallow<br>             <b>Kc (FAO-56):</b> 0.0<br>             <b>Season:</b> Rabi 2024-25<br>             <b>Classifier:</b> Random Forest<br>             <b>Accuracy:</b> 89.2% ✅             </div>         </div>`)[0];
+                popup_a1989749f21a5e7eb365a2b9c87f4243.setContent(html_50da5bfdf7015d32a9220b8433432f6d);
+            
+        
+
+        rectangle_21bdb6598af951aaa43beebf9f3938d4.bindPopup(popup_a1989749f21a5e7eb365a2b9c87f4243)
+        ;
+
+        
+    
+    
+            rectangle_21bdb6598af951aaa43beebf9f3938d4.bindTooltip(
+                `<div>
+                     🌾 Fallow — Click for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var rectangle_bf24220ea06c2c0eebe767e4f95fb872 = L.rectangle(
+                [[27.5, 78.3], [27.6, 78.5]],
+                {"bubblingMouseEvents": true, "color": "#808080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#808080", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 0.5}
+            ).addTo(feature_group_7b679c0ec537cb3232404d5b63a7db48);
+        
+    
+        var popup_4317c4ca0e2976e1f44be05bd7a74782 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_cecd92db66e78aaaec0e8f73d9e7a6ce = $(`<div id="html_cecd92db66e78aaaec0e8f73d9e7a6ce" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:200px'>             <h4 style='color:#808080; margin:0'>🌾 Other</h4>             <hr style='margin:4px'>             <b>Crop Type:</b> Other<br>             <b>Kc (FAO-56):</b> 0.0<br>             <b>Season:</b> Rabi 2024-25<br>             <b>Classifier:</b> Random Forest<br>             <b>Accuracy:</b> 89.2% ✅             </div>         </div>`)[0];
+                popup_4317c4ca0e2976e1f44be05bd7a74782.setContent(html_cecd92db66e78aaaec0e8f73d9e7a6ce);
+            
+        
+
+        rectangle_bf24220ea06c2c0eebe767e4f95fb872.bindPopup(popup_4317c4ca0e2976e1f44be05bd7a74782)
+        ;
+
+        
+    
+    
+            rectangle_bf24220ea06c2c0eebe767e4f95fb872.bindTooltip(
+                `<div>
+                     🌾 Other — Click for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var rectangle_a4bfb9445359284e9c7f446ae00c3029 = L.rectangle(
+                [[28.4, 77.5], [28.5, 77.8]],
+                {"bubblingMouseEvents": true, "color": "#808080", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#808080", "fillOpacity": 0.55, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 0.5}
+            ).addTo(feature_group_7b679c0ec537cb3232404d5b63a7db48);
+        
+    
+        var popup_93e437d0e55ca07818625c3c6da03609 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_187ecfd46ffb6ba7e488fb97ff5b364f = $(`<div id="html_187ecfd46ffb6ba7e488fb97ff5b364f" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:200px'>             <h4 style='color:#808080; margin:0'>🌾 Other</h4>             <hr style='margin:4px'>             <b>Crop Type:</b> Other<br>             <b>Kc (FAO-56):</b> 0.0<br>             <b>Season:</b> Rabi 2024-25<br>             <b>Classifier:</b> Random Forest<br>             <b>Accuracy:</b> 89.2% ✅             </div>         </div>`)[0];
+                popup_93e437d0e55ca07818625c3c6da03609.setContent(html_187ecfd46ffb6ba7e488fb97ff5b364f);
+            
+        
+
+        rectangle_a4bfb9445359284e9c7f446ae00c3029.bindPopup(popup_93e437d0e55ca07818625c3c6da03609)
+        ;
+
+        
+    
+    
+            rectangle_a4bfb9445359284e9c7f446ae00c3029.bindTooltip(
+                `<div>
+                     🌾 Other — Click for details
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_7b679c0ec537cb3232404d5b63a7db48.addTo(map_549c50d218dcc909874175895c8e26cc);
+        
+    
+            var feature_group_46608a03b5367e10288ddcad0aa33576 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_441e6c49ac927dfc52b93b05c8580e68 = L.circle(
+                [28.0, 78.0],
+                {"bubblingMouseEvents": true, "color": "#2D6A4F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2D6A4F", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_46608a03b5367e10288ddcad0aa33576);
+        
+    
+        var popup_a4ff573edb63c26936b310f903af3d6e = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_e99603e00b6bccdf6e77b4fc2993c1a6 = $(`<div id="html_e99603e00b6bccdf6e77b4fc2993c1a6" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:220px'>             <h4 style='color:#2D6A4F; margin:0'>                 ✅ No Stress</h4>             <hr style='margin:4px'>             <b>MSI Score:</b> 0.58<br>             <b>NDVI:</b> 0.72<br>             <b>SAR VV:</b> -11.2 dB<br>             <b>Data:</b> Sentinel-1 + Sentinel-2<br>             <b>Method:</b> SAR+Optical Fusion<br>             <hr style='margin:4px'>             <small style='color:gray'>             MSI = 0.30×NDWI + 0.25×LSWI +             0.20×NDVI + 0.15×VV</small>             </div>         </div>`)[0];
+                popup_a4ff573edb63c26936b310f903af3d6e.setContent(html_e99603e00b6bccdf6e77b4fc2993c1a6);
+            
+        
+
+        circle_441e6c49ac927dfc52b93b05c8580e68.bindPopup(popup_a4ff573edb63c26936b310f903af3d6e)
+        ;
+
+        
+    
+    
+            circle_441e6c49ac927dfc52b93b05c8580e68.bindTooltip(
+                `<div>
+                     ✅ No Stress — MSI: 0.58
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_76f68188c1e165031e71403e6dd49755 = L.circle(
+                [27.8, 77.8],
+                {"bubblingMouseEvents": true, "color": "#2D6A4F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2D6A4F", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_46608a03b5367e10288ddcad0aa33576);
+        
+    
+        var popup_ef5750ddf7c010145b207b0b7a6658d4 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_d8ead6a8562831d2d7aaabaf6058a958 = $(`<div id="html_d8ead6a8562831d2d7aaabaf6058a958" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:220px'>             <h4 style='color:#2D6A4F; margin:0'>                 ✅ No Stress</h4>             <hr style='margin:4px'>             <b>MSI Score:</b> 0.61<br>             <b>NDVI:</b> 0.75<br>             <b>SAR VV:</b> -10.8 dB<br>             <b>Data:</b> Sentinel-1 + Sentinel-2<br>             <b>Method:</b> SAR+Optical Fusion<br>             <hr style='margin:4px'>             <small style='color:gray'>             MSI = 0.30×NDWI + 0.25×LSWI +             0.20×NDVI + 0.15×VV</small>             </div>         </div>`)[0];
+                popup_ef5750ddf7c010145b207b0b7a6658d4.setContent(html_d8ead6a8562831d2d7aaabaf6058a958);
+            
+        
+
+        circle_76f68188c1e165031e71403e6dd49755.bindPopup(popup_ef5750ddf7c010145b207b0b7a6658d4)
+        ;
+
+        
+    
+    
+            circle_76f68188c1e165031e71403e6dd49755.bindTooltip(
+                `<div>
+                     ✅ No Stress — MSI: 0.61
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_0b440343240fa38aa2693857bb6482f1 = L.circle(
+                [28.2, 78.2],
+                {"bubblingMouseEvents": true, "color": "#2D6A4F", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2D6A4F", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_46608a03b5367e10288ddcad0aa33576);
+        
+    
+        var popup_192181ef2c0b58efe5f7624c766e75fe = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_a3c587badc4214afc7d36ac3c6543cea = $(`<div id="html_a3c587badc4214afc7d36ac3c6543cea" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:220px'>             <h4 style='color:#2D6A4F; margin:0'>                 ✅ No Stress</h4>             <hr style='margin:4px'>             <b>MSI Score:</b> 0.55<br>             <b>NDVI:</b> 0.69<br>             <b>SAR VV:</b> -11.5 dB<br>             <b>Data:</b> Sentinel-1 + Sentinel-2<br>             <b>Method:</b> SAR+Optical Fusion<br>             <hr style='margin:4px'>             <small style='color:gray'>             MSI = 0.30×NDWI + 0.25×LSWI +             0.20×NDVI + 0.15×VV</small>             </div>         </div>`)[0];
+                popup_192181ef2c0b58efe5f7624c766e75fe.setContent(html_a3c587badc4214afc7d36ac3c6543cea);
+            
+        
+
+        circle_0b440343240fa38aa2693857bb6482f1.bindPopup(popup_192181ef2c0b58efe5f7624c766e75fe)
+        ;
+
+        
+    
+    
+            circle_0b440343240fa38aa2693857bb6482f1.bindTooltip(
+                `<div>
+                     ✅ No Stress — MSI: 0.55
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_c8e982f5f60e33d201f7794673068efb = L.circle(
+                [27.7, 78.3],
+                {"bubblingMouseEvents": true, "color": "#F4A261", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F4A261", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_46608a03b5367e10288ddcad0aa33576);
+        
+    
+        var popup_90054f98849788eed263ff4dbbe5e904 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_51744e69c41c9e955d562f7bb10f0f73 = $(`<div id="html_51744e69c41c9e955d562f7bb10f0f73" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:220px'>             <h4 style='color:#F4A261; margin:0'>                 ⚠️ Mild Stress</h4>             <hr style='margin:4px'>             <b>MSI Score:</b> 0.34<br>             <b>NDVI:</b> 0.51<br>             <b>SAR VV:</b> -14.2 dB<br>             <b>Data:</b> Sentinel-1 + Sentinel-2<br>             <b>Method:</b> SAR+Optical Fusion<br>             <hr style='margin:4px'>             <small style='color:gray'>             MSI = 0.30×NDWI + 0.25×LSWI +             0.20×NDVI + 0.15×VV</small>             </div>         </div>`)[0];
+                popup_90054f98849788eed263ff4dbbe5e904.setContent(html_51744e69c41c9e955d562f7bb10f0f73);
+            
+        
+
+        circle_c8e982f5f60e33d201f7794673068efb.bindPopup(popup_90054f98849788eed263ff4dbbe5e904)
+        ;
+
+        
+    
+    
+            circle_c8e982f5f60e33d201f7794673068efb.bindTooltip(
+                `<div>
+                     ⚠️ Mild Stress — MSI: 0.34
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_b2a90d5d38493455617c276a9c982168 = L.circle(
+                [28.3, 77.7],
+                {"bubblingMouseEvents": true, "color": "#F4A261", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F4A261", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_46608a03b5367e10288ddcad0aa33576);
+        
+    
+        var popup_1d320d2103131e39c1eb6304a73d2393 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_66ee03ceff6292b6a5d5334ac122af5a = $(`<div id="html_66ee03ceff6292b6a5d5334ac122af5a" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:220px'>             <h4 style='color:#F4A261; margin:0'>                 ⚠️ Mild Stress</h4>             <hr style='margin:4px'>             <b>MSI Score:</b> 0.31<br>             <b>NDVI:</b> 0.48<br>             <b>SAR VV:</b> -15.1 dB<br>             <b>Data:</b> Sentinel-1 + Sentinel-2<br>             <b>Method:</b> SAR+Optical Fusion<br>             <hr style='margin:4px'>             <small style='color:gray'>             MSI = 0.30×NDWI + 0.25×LSWI +             0.20×NDVI + 0.15×VV</small>             </div>         </div>`)[0];
+                popup_1d320d2103131e39c1eb6304a73d2393.setContent(html_66ee03ceff6292b6a5d5334ac122af5a);
+            
+        
+
+        circle_b2a90d5d38493455617c276a9c982168.bindPopup(popup_1d320d2103131e39c1eb6304a73d2393)
+        ;
+
+        
+    
+    
+            circle_b2a90d5d38493455617c276a9c982168.bindTooltip(
+                `<div>
+                     ⚠️ Mild Stress — MSI: 0.31
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_60742c61b13bf41e17d148aa5ae8eb9a = L.circle(
+                [27.9, 78.4],
+                {"bubblingMouseEvents": true, "color": "#F4A261", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F4A261", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_46608a03b5367e10288ddcad0aa33576);
+        
+    
+        var popup_b36a76327b7817f04e75a09f88580dbd = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_b86efd457037b934add85ae90482ff18 = $(`<div id="html_b86efd457037b934add85ae90482ff18" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:220px'>             <h4 style='color:#F4A261; margin:0'>                 ⚠️ Mild Stress</h4>             <hr style='margin:4px'>             <b>MSI Score:</b> 0.28<br>             <b>NDVI:</b> 0.43<br>             <b>SAR VV:</b> -15.8 dB<br>             <b>Data:</b> Sentinel-1 + Sentinel-2<br>             <b>Method:</b> SAR+Optical Fusion<br>             <hr style='margin:4px'>             <small style='color:gray'>             MSI = 0.30×NDWI + 0.25×LSWI +             0.20×NDVI + 0.15×VV</small>             </div>         </div>`)[0];
+                popup_b36a76327b7817f04e75a09f88580dbd.setContent(html_b86efd457037b934add85ae90482ff18);
+            
+        
+
+        circle_60742c61b13bf41e17d148aa5ae8eb9a.bindPopup(popup_b36a76327b7817f04e75a09f88580dbd)
+        ;
+
+        
+    
+    
+            circle_60742c61b13bf41e17d148aa5ae8eb9a.bindTooltip(
+                `<div>
+                     ⚠️ Mild Stress — MSI: 0.28
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_df9d49ebf12a93e5be3fa8bfca5aca76 = L.circle(
+                [28.4, 78.3],
+                {"bubblingMouseEvents": true, "color": "#F4A261", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#F4A261", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_46608a03b5367e10288ddcad0aa33576);
+        
+    
+        var popup_eb44db8ffcce12116b150ed1690781f5 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_0f72f5c27aa1f3af9f11045c3e3ce6fc = $(`<div id="html_0f72f5c27aa1f3af9f11045c3e3ce6fc" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:220px'>             <h4 style='color:#F4A261; margin:0'>                 ⚠️ Mild Stress</h4>             <hr style='margin:4px'>             <b>MSI Score:</b> 0.32<br>             <b>NDVI:</b> 0.47<br>             <b>SAR VV:</b> -14.9 dB<br>             <b>Data:</b> Sentinel-1 + Sentinel-2<br>             <b>Method:</b> SAR+Optical Fusion<br>             <hr style='margin:4px'>             <small style='color:gray'>             MSI = 0.30×NDWI + 0.25×LSWI +             0.20×NDVI + 0.15×VV</small>             </div>         </div>`)[0];
+                popup_eb44db8ffcce12116b150ed1690781f5.setContent(html_0f72f5c27aa1f3af9f11045c3e3ce6fc);
+            
+        
+
+        circle_df9d49ebf12a93e5be3fa8bfca5aca76.bindPopup(popup_eb44db8ffcce12116b150ed1690781f5)
+        ;
+
+        
+    
+    
+            circle_df9d49ebf12a93e5be3fa8bfca5aca76.bindTooltip(
+                `<div>
+                     ⚠️ Mild Stress — MSI: 0.32
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_0befb3d6b9a5656d9e610466d2531989 = L.circle(
+                [27.6, 77.6],
+                {"bubblingMouseEvents": true, "color": "#D62828", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D62828", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_46608a03b5367e10288ddcad0aa33576);
+        
+    
+        var popup_bfb9cacad058d9492d887c4cd207df9e = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_2006a77cf971b7844e9e49498476df24 = $(`<div id="html_2006a77cf971b7844e9e49498476df24" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:220px'>             <h4 style='color:#D62828; margin:0'>                 🔴 Severe Stress</h4>             <hr style='margin:4px'>             <b>MSI Score:</b> 0.18<br>             <b>NDVI:</b> 0.29<br>             <b>SAR VV:</b> -18.4 dB<br>             <b>Data:</b> Sentinel-1 + Sentinel-2<br>             <b>Method:</b> SAR+Optical Fusion<br>             <hr style='margin:4px'>             <small style='color:gray'>             MSI = 0.30×NDWI + 0.25×LSWI +             0.20×NDVI + 0.15×VV</small>             </div>         </div>`)[0];
+                popup_bfb9cacad058d9492d887c4cd207df9e.setContent(html_2006a77cf971b7844e9e49498476df24);
+            
+        
+
+        circle_0befb3d6b9a5656d9e610466d2531989.bindPopup(popup_bfb9cacad058d9492d887c4cd207df9e)
+        ;
+
+        
+    
+    
+            circle_0befb3d6b9a5656d9e610466d2531989.bindTooltip(
+                `<div>
+                     🔴 Severe Stress — MSI: 0.18
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_876fc68eac267b854465b2bd5402dc97 = L.circle(
+                [28.1, 77.6],
+                {"bubblingMouseEvents": true, "color": "#D62828", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D62828", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_46608a03b5367e10288ddcad0aa33576);
+        
+    
+        var popup_957cfa9e7a20c96a361b6b6d3bf44904 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_6c8765327dd9ae7c5892443674da312f = $(`<div id="html_6c8765327dd9ae7c5892443674da312f" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:220px'>             <h4 style='color:#D62828; margin:0'>                 🔴 Severe Stress</h4>             <hr style='margin:4px'>             <b>MSI Score:</b> 0.15<br>             <b>NDVI:</b> 0.24<br>             <b>SAR VV:</b> -19.2 dB<br>             <b>Data:</b> Sentinel-1 + Sentinel-2<br>             <b>Method:</b> SAR+Optical Fusion<br>             <hr style='margin:4px'>             <small style='color:gray'>             MSI = 0.30×NDWI + 0.25×LSWI +             0.20×NDVI + 0.15×VV</small>             </div>         </div>`)[0];
+                popup_957cfa9e7a20c96a361b6b6d3bf44904.setContent(html_6c8765327dd9ae7c5892443674da312f);
+            
+        
+
+        circle_876fc68eac267b854465b2bd5402dc97.bindPopup(popup_957cfa9e7a20c96a361b6b6d3bf44904)
+        ;
+
+        
+    
+    
+            circle_876fc68eac267b854465b2bd5402dc97.bindTooltip(
+                `<div>
+                     🔴 Severe Stress — MSI: 0.15
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_4bf9e53c0d4986947c228d1a4891e38e = L.circle(
+                [28.4, 78.0],
+                {"bubblingMouseEvents": true, "color": "#D62828", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D62828", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4500, "stroke": true, "weight": 1}
+            ).addTo(feature_group_46608a03b5367e10288ddcad0aa33576);
+        
+    
+        var popup_16d7cee11ebdc42f9117b085b63ff59b = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_689d54f8fc464eb4c53080e5df188d5d = $(`<div id="html_689d54f8fc464eb4c53080e5df188d5d" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:220px'>             <h4 style='color:#D62828; margin:0'>                 🔴 Severe Stress</h4>             <hr style='margin:4px'>             <b>MSI Score:</b> 0.12<br>             <b>NDVI:</b> 0.21<br>             <b>SAR VV:</b> -20.1 dB<br>             <b>Data:</b> Sentinel-1 + Sentinel-2<br>             <b>Method:</b> SAR+Optical Fusion<br>             <hr style='margin:4px'>             <small style='color:gray'>             MSI = 0.30×NDWI + 0.25×LSWI +             0.20×NDVI + 0.15×VV</small>             </div>         </div>`)[0];
+                popup_16d7cee11ebdc42f9117b085b63ff59b.setContent(html_689d54f8fc464eb4c53080e5df188d5d);
+            
+        
+
+        circle_4bf9e53c0d4986947c228d1a4891e38e.bindPopup(popup_16d7cee11ebdc42f9117b085b63ff59b)
+        ;
+
+        
+    
+    
+            circle_4bf9e53c0d4986947c228d1a4891e38e.bindTooltip(
+                `<div>
+                     🔴 Severe Stress — MSI: 0.12
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_6844fe8f5839c3ff8ac1b8357664722f = L.circle(
+                [27.5, 78.2],
+                {"bubblingMouseEvents": true, "color": "#D62828", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#D62828", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4000, "stroke": true, "weight": 1}
+            ).addTo(feature_group_46608a03b5367e10288ddcad0aa33576);
+        
+    
+        var popup_023822e33779f147aa5999eff4d24682 = L.popup({
+  "maxWidth": 240,
+});
+
+        
+            
+                var html_43c31efd608f876d5ae8143b3e99cd5f = $(`<div id="html_43c31efd608f876d5ae8143b3e99cd5f" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:220px'>             <h4 style='color:#D62828; margin:0'>                 🔴 Severe Stress</h4>             <hr style='margin:4px'>             <b>MSI Score:</b> 0.14<br>             <b>NDVI:</b> 0.22<br>             <b>SAR VV:</b> -19.8 dB<br>             <b>Data:</b> Sentinel-1 + Sentinel-2<br>             <b>Method:</b> SAR+Optical Fusion<br>             <hr style='margin:4px'>             <small style='color:gray'>             MSI = 0.30×NDWI + 0.25×LSWI +             0.20×NDVI + 0.15×VV</small>             </div>         </div>`)[0];
+                popup_023822e33779f147aa5999eff4d24682.setContent(html_43c31efd608f876d5ae8143b3e99cd5f);
+            
+        
+
+        circle_6844fe8f5839c3ff8ac1b8357664722f.bindPopup(popup_023822e33779f147aa5999eff4d24682)
+        ;
+
+        
+    
+    
+            circle_6844fe8f5839c3ff8ac1b8357664722f.bindTooltip(
+                `<div>
+                     🔴 Severe Stress — MSI: 0.14
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var feature_group_9d4f296b66743b5cccd93fb581b7de02 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_220441add11469aecec65da0611618a8 = L.marker(
+                [28.05, 78.05],
+                {
+}
+            ).addTo(feature_group_9d4f296b66743b5cccd93fb581b7de02);
+        
+    
+            var icon_ac5df09c021437a4fe6aaccac1e1ff1e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1847c8edad6e4b98e605c0519e24d5d1 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_85dfc9455d40e60db72c8fd439080a3a = $(`<div id="html_85dfc9455d40e60db72c8fd439080a3a" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:260px'>             <div style='background:#1d3557; color:white;                  padding:8px; border-radius:6px 6px 0 0'>             <h4 style='margin:0'>🔵 No Action</h4>             </div>             <div style='padding:8px; background:#f8f9fa;                  border:1px solid #dee2e6'>             <p style='font-size:14px; color:#1d3557;                font-weight:bold; margin:4px 0'>             सिंचाई की जरूरत नहीं</p>             <hr style='margin:6px 0'>             <table style='width:100%; font-size:11px'>             <tr><td><b>Advisory:</b></td>                 <td>No irrigation needed</td></tr>             <tr><td><b>ET₀:</b></td>                 <td>4.2 mm/day (IMD)</td></tr>             <tr><td><b>Kc (FAO-56):</b></td>                 <td>1.15</td></tr>             <tr><td><b>Ks (stress):</b></td>                 <td>1.0</td></tr>             <tr><td><b>Deficit:</b></td>                 <td>0.0 mm/day</td></tr>             <tr><td><b>Weekly need:</b></td>                 <td><b>0.0 mm/week</b></td></tr>             </table>             <hr style='margin:6px 0'>             <small style='color:gray'>             FAO-56: ETc=1.15×4.2=4.83 mm/day<br>             Deficit = ETc×(1-Ks) =             4.83×0.0             = 0.0 mm/day</small>             </div>             </div>         </div>`)[0];
+                popup_1847c8edad6e4b98e605c0519e24d5d1.setContent(html_85dfc9455d40e60db72c8fd439080a3a);
+            
+        
+
+        marker_220441add11469aecec65da0611618a8.bindPopup(popup_1847c8edad6e4b98e605c0519e24d5d1)
+        ;
+
+        
+    
+    
+            marker_220441add11469aecec65da0611618a8.bindTooltip(
+                `<div>
+                     🔵 सिंचाई की जरूरत नहीं — 0mm/week
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_220441add11469aecec65da0611618a8.setIcon(icon_ac5df09c021437a4fe6aaccac1e1ff1e);
+            
+    
+            var marker_ec1a072f49d94ca921a37a67d65d10ab = L.marker(
+                [27.85, 77.85],
+                {
+}
+            ).addTo(feature_group_9d4f296b66743b5cccd93fb581b7de02);
+        
+    
+            var icon_508817f87004b7259a21ea1434496b25 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a8873322fb713c7eba3efebe26c191b5 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_28b386c031ac4febeb5c9e32ce0c461c = $(`<div id="html_28b386c031ac4febeb5c9e32ce0c461c" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:260px'>             <div style='background:#1d3557; color:white;                  padding:8px; border-radius:6px 6px 0 0'>             <h4 style='margin:0'>🔵 No Action</h4>             </div>             <div style='padding:8px; background:#f8f9fa;                  border:1px solid #dee2e6'>             <p style='font-size:14px; color:#1d3557;                font-weight:bold; margin:4px 0'>             सिंचाई की जरूरत नहीं</p>             <hr style='margin:6px 0'>             <table style='width:100%; font-size:11px'>             <tr><td><b>Advisory:</b></td>                 <td>No irrigation needed</td></tr>             <tr><td><b>ET₀:</b></td>                 <td>4.2 mm/day (IMD)</td></tr>             <tr><td><b>Kc (FAO-56):</b></td>                 <td>1.15</td></tr>             <tr><td><b>Ks (stress):</b></td>                 <td>1.0</td></tr>             <tr><td><b>Deficit:</b></td>                 <td>0.2 mm/day</td></tr>             <tr><td><b>Weekly need:</b></td>                 <td><b>1.4 mm/week</b></td></tr>             </table>             <hr style='margin:6px 0'>             <small style='color:gray'>             FAO-56: ETc=1.15×4.2=4.83 mm/day<br>             Deficit = ETc×(1-Ks) =             4.83×0.0             = 0.2 mm/day</small>             </div>             </div>         </div>`)[0];
+                popup_a8873322fb713c7eba3efebe26c191b5.setContent(html_28b386c031ac4febeb5c9e32ce0c461c);
+            
+        
+
+        marker_ec1a072f49d94ca921a37a67d65d10ab.bindPopup(popup_a8873322fb713c7eba3efebe26c191b5)
+        ;
+
+        
+    
+    
+            marker_ec1a072f49d94ca921a37a67d65d10ab.bindTooltip(
+                `<div>
+                     🔵 सिंचाई की जरूरत नहीं — 1mm/week
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ec1a072f49d94ca921a37a67d65d10ab.setIcon(icon_508817f87004b7259a21ea1434496b25);
+            
+    
+            var marker_a108e0d9a75b208f0b5a1468df042773 = L.marker(
+                [28.25, 78.15],
+                {
+}
+            ).addTo(feature_group_9d4f296b66743b5cccd93fb581b7de02);
+        
+    
+            var icon_19d7286d00b9fabff23824709d600dd1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkblue",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_45806de07ed529ed9ee54e7309eebdd1 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_898b833aceea1c69b9985780da1c3cc6 = $(`<div id="html_898b833aceea1c69b9985780da1c3cc6" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:260px'>             <div style='background:#1d3557; color:white;                  padding:8px; border-radius:6px 6px 0 0'>             <h4 style='margin:0'>🔵 No Action</h4>             </div>             <div style='padding:8px; background:#f8f9fa;                  border:1px solid #dee2e6'>             <p style='font-size:14px; color:#1d3557;                font-weight:bold; margin:4px 0'>             सिंचाई की जरूरत नहीं</p>             <hr style='margin:6px 0'>             <table style='width:100%; font-size:11px'>             <tr><td><b>Advisory:</b></td>                 <td>No irrigation needed</td></tr>             <tr><td><b>ET₀:</b></td>                 <td>4.2 mm/day (IMD)</td></tr>             <tr><td><b>Kc (FAO-56):</b></td>                 <td>0.85</td></tr>             <tr><td><b>Ks (stress):</b></td>                 <td>1.0</td></tr>             <tr><td><b>Deficit:</b></td>                 <td>0.3 mm/day</td></tr>             <tr><td><b>Weekly need:</b></td>                 <td><b>2.1 mm/week</b></td></tr>             </table>             <hr style='margin:6px 0'>             <small style='color:gray'>             FAO-56: ETc=0.85×4.2=3.57 mm/day<br>             Deficit = ETc×(1-Ks) =             3.57×0.0             = 0.3 mm/day</small>             </div>             </div>         </div>`)[0];
+                popup_45806de07ed529ed9ee54e7309eebdd1.setContent(html_898b833aceea1c69b9985780da1c3cc6);
+            
+        
+
+        marker_a108e0d9a75b208f0b5a1468df042773.bindPopup(popup_45806de07ed529ed9ee54e7309eebdd1)
+        ;
+
+        
+    
+    
+            marker_a108e0d9a75b208f0b5a1468df042773.bindTooltip(
+                `<div>
+                     🔵 सिंचाई की जरूरत नहीं — 2mm/week
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a108e0d9a75b208f0b5a1468df042773.setIcon(icon_19d7286d00b9fabff23824709d600dd1);
+            
+    
+            var marker_fccc99c678af9d15c7b6305fd5ad2f51 = L.marker(
+                [27.75, 78.25],
+                {
+}
+            ).addTo(feature_group_9d4f296b66743b5cccd93fb581b7de02);
+        
+    
+            var icon_8691ba1c15d524784f814fdeb19ddbdd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_00783eb8a09490c1677b2fd3e9cc3654 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_dc5eaccac8f4fa0f4b10c365ab61cf3d = $(`<div id="html_dc5eaccac8f4fa0f4b10c365ab61cf3d" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:260px'>             <div style='background:#52b788; color:white;                  padding:8px; border-radius:6px 6px 0 0'>             <h4 style='margin:0'>🟢 Light Irrigation</h4>             </div>             <div style='padding:8px; background:#f8f9fa;                  border:1px solid #dee2e6'>             <p style='font-size:14px; color:#52b788;                font-weight:bold; margin:4px 0'>             हल्की सिंचाई करें</p>             <hr style='margin:6px 0'>             <table style='width:100%; font-size:11px'>             <tr><td><b>Advisory:</b></td>                 <td>Light irrigation (5-15mm/week)</td></tr>             <tr><td><b>ET₀:</b></td>                 <td>4.2 mm/day (IMD)</td></tr>             <tr><td><b>Kc (FAO-56):</b></td>                 <td>1.15</td></tr>             <tr><td><b>Ks (stress):</b></td>                 <td>0.6</td></tr>             <tr><td><b>Deficit:</b></td>                 <td>1.2 mm/day</td></tr>             <tr><td><b>Weekly need:</b></td>                 <td><b>8.4 mm/week</b></td></tr>             </table>             <hr style='margin:6px 0'>             <small style='color:gray'>             FAO-56: ETc=1.15×4.2=4.83 mm/day<br>             Deficit = ETc×(1-Ks) =             4.83×0.4             = 1.2 mm/day</small>             </div>             </div>         </div>`)[0];
+                popup_00783eb8a09490c1677b2fd3e9cc3654.setContent(html_dc5eaccac8f4fa0f4b10c365ab61cf3d);
+            
+        
+
+        marker_fccc99c678af9d15c7b6305fd5ad2f51.bindPopup(popup_00783eb8a09490c1677b2fd3e9cc3654)
+        ;
+
+        
+    
+    
+            marker_fccc99c678af9d15c7b6305fd5ad2f51.bindTooltip(
+                `<div>
+                     🟢 हल्की सिंचाई करें — 8mm/week
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_fccc99c678af9d15c7b6305fd5ad2f51.setIcon(icon_8691ba1c15d524784f814fdeb19ddbdd);
+            
+    
+            var marker_4816c4c1b9aaacb5fba9db2f6f2379dc = L.marker(
+                [28.35, 77.75],
+                {
+}
+            ).addTo(feature_group_9d4f296b66743b5cccd93fb581b7de02);
+        
+    
+            var icon_6bb9bf278d13c08cc1b3a91b1152e690 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d5507317ce46fd11e65183412bd51e86 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_eb3e98f8e40eb6f181099da2365d806c = $(`<div id="html_eb3e98f8e40eb6f181099da2365d806c" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:260px'>             <div style='background:#52b788; color:white;                  padding:8px; border-radius:6px 6px 0 0'>             <h4 style='margin:0'>🟢 Light Irrigation</h4>             </div>             <div style='padding:8px; background:#f8f9fa;                  border:1px solid #dee2e6'>             <p style='font-size:14px; color:#52b788;                font-weight:bold; margin:4px 0'>             हल्की सिंचाई करें</p>             <hr style='margin:6px 0'>             <table style='width:100%; font-size:11px'>             <tr><td><b>Advisory:</b></td>                 <td>Light irrigation (5-15mm/week)</td></tr>             <tr><td><b>ET₀:</b></td>                 <td>4.2 mm/day (IMD)</td></tr>             <tr><td><b>Kc (FAO-56):</b></td>                 <td>1.15</td></tr>             <tr><td><b>Ks (stress):</b></td>                 <td>0.6</td></tr>             <tr><td><b>Deficit:</b></td>                 <td>1.5 mm/day</td></tr>             <tr><td><b>Weekly need:</b></td>                 <td><b>10.5 mm/week</b></td></tr>             </table>             <hr style='margin:6px 0'>             <small style='color:gray'>             FAO-56: ETc=1.15×4.2=4.83 mm/day<br>             Deficit = ETc×(1-Ks) =             4.83×0.4             = 1.5 mm/day</small>             </div>             </div>         </div>`)[0];
+                popup_d5507317ce46fd11e65183412bd51e86.setContent(html_eb3e98f8e40eb6f181099da2365d806c);
+            
+        
+
+        marker_4816c4c1b9aaacb5fba9db2f6f2379dc.bindPopup(popup_d5507317ce46fd11e65183412bd51e86)
+        ;
+
+        
+    
+    
+            marker_4816c4c1b9aaacb5fba9db2f6f2379dc.bindTooltip(
+                `<div>
+                     🟢 हल्की सिंचाई करें — 10mm/week
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4816c4c1b9aaacb5fba9db2f6f2379dc.setIcon(icon_6bb9bf278d13c08cc1b3a91b1152e690);
+            
+    
+            var marker_4729c84d1c13e9f87f0893f07289f0ab = L.marker(
+                [27.95, 78.35],
+                {
+}
+            ).addTo(feature_group_9d4f296b66743b5cccd93fb581b7de02);
+        
+    
+            var icon_ed8a42b7a0aa47c72a162637f4bfb5ff = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8f858ce5d5d74e682db2c428902e533f = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_97b153e2025f65e3d016098c493f9f84 = $(`<div id="html_97b153e2025f65e3d016098c493f9f84" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:260px'>             <div style='background:#52b788; color:white;                  padding:8px; border-radius:6px 6px 0 0'>             <h4 style='margin:0'>🟢 Light Irrigation</h4>             </div>             <div style='padding:8px; background:#f8f9fa;                  border:1px solid #dee2e6'>             <p style='font-size:14px; color:#52b788;                font-weight:bold; margin:4px 0'>             हल्की सिंचाई करें</p>             <hr style='margin:6px 0'>             <table style='width:100%; font-size:11px'>             <tr><td><b>Advisory:</b></td>                 <td>Light irrigation (5-15mm/week)</td></tr>             <tr><td><b>ET₀:</b></td>                 <td>4.2 mm/day (IMD)</td></tr>             <tr><td><b>Kc (FAO-56):</b></td>                 <td>0.85</td></tr>             <tr><td><b>Ks (stress):</b></td>                 <td>0.6</td></tr>             <tr><td><b>Deficit:</b></td>                 <td>1.8 mm/day</td></tr>             <tr><td><b>Weekly need:</b></td>                 <td><b>12.6 mm/week</b></td></tr>             </table>             <hr style='margin:6px 0'>             <small style='color:gray'>             FAO-56: ETc=0.85×4.2=3.57 mm/day<br>             Deficit = ETc×(1-Ks) =             3.57×0.4             = 1.8 mm/day</small>             </div>             </div>         </div>`)[0];
+                popup_8f858ce5d5d74e682db2c428902e533f.setContent(html_97b153e2025f65e3d016098c493f9f84);
+            
+        
+
+        marker_4729c84d1c13e9f87f0893f07289f0ab.bindPopup(popup_8f858ce5d5d74e682db2c428902e533f)
+        ;
+
+        
+    
+    
+            marker_4729c84d1c13e9f87f0893f07289f0ab.bindTooltip(
+                `<div>
+                     🟢 हल्की सिंचाई करें — 13mm/week
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4729c84d1c13e9f87f0893f07289f0ab.setIcon(icon_ed8a42b7a0aa47c72a162637f4bfb5ff);
+            
+    
+            var marker_8868c89cf88e0d35aed4f2773bcfdd6b = L.marker(
+                [28.15, 77.65],
+                {
+}
+            ).addTo(feature_group_9d4f296b66743b5cccd93fb581b7de02);
+        
+    
+            var icon_24ddc97bc3b886746212b1b48f3dd8a9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a6cb4534328f8542021a9bd5c50ee4bf = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_b5b7d65d5c644b222fedfb156793942b = $(`<div id="html_b5b7d65d5c644b222fedfb156793942b" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:260px'>             <div style='background:#F4A261; color:white;                  padding:8px; border-radius:6px 6px 0 0'>             <h4 style='margin:0'>🟠 Moderate Irrigation</h4>             </div>             <div style='padding:8px; background:#f8f9fa;                  border:1px solid #dee2e6'>             <p style='font-size:14px; color:#F4A261;                font-weight:bold; margin:4px 0'>             जल्द सिंचाई करें</p>             <hr style='margin:6px 0'>             <table style='width:100%; font-size:11px'>             <tr><td><b>Advisory:</b></td>                 <td>Moderate irrigation (15-30mm/week)</td></tr>             <tr><td><b>ET₀:</b></td>                 <td>4.2 mm/day (IMD)</td></tr>             <tr><td><b>Kc (FAO-56):</b></td>                 <td>1.15</td></tr>             <tr><td><b>Ks (stress):</b></td>                 <td>0.4</td></tr>             <tr><td><b>Deficit:</b></td>                 <td>2.8 mm/day</td></tr>             <tr><td><b>Weekly need:</b></td>                 <td><b>19.6 mm/week</b></td></tr>             </table>             <hr style='margin:6px 0'>             <small style='color:gray'>             FAO-56: ETc=1.15×4.2=4.83 mm/day<br>             Deficit = ETc×(1-Ks) =             4.83×0.6             = 2.8 mm/day</small>             </div>             </div>         </div>`)[0];
+                popup_a6cb4534328f8542021a9bd5c50ee4bf.setContent(html_b5b7d65d5c644b222fedfb156793942b);
+            
+        
+
+        marker_8868c89cf88e0d35aed4f2773bcfdd6b.bindPopup(popup_a6cb4534328f8542021a9bd5c50ee4bf)
+        ;
+
+        
+    
+    
+            marker_8868c89cf88e0d35aed4f2773bcfdd6b.bindTooltip(
+                `<div>
+                     🟠 जल्द सिंचाई करें — 20mm/week
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8868c89cf88e0d35aed4f2773bcfdd6b.setIcon(icon_24ddc97bc3b886746212b1b48f3dd8a9);
+            
+    
+            var marker_6cb4a1f99bfd7bc7420893311da055ee = L.marker(
+                [27.65, 77.65],
+                {
+}
+            ).addTo(feature_group_9d4f296b66743b5cccd93fb581b7de02);
+        
+    
+            var icon_128f170e9c737fd5e5a948b804cc1f9c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b326322d1d156d4b95204d314f200012 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_e2c9f51c417207d1679323209835caac = $(`<div id="html_e2c9f51c417207d1679323209835caac" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:260px'>             <div style='background:#F4A261; color:white;                  padding:8px; border-radius:6px 6px 0 0'>             <h4 style='margin:0'>🟠 Moderate Irrigation</h4>             </div>             <div style='padding:8px; background:#f8f9fa;                  border:1px solid #dee2e6'>             <p style='font-size:14px; color:#F4A261;                font-weight:bold; margin:4px 0'>             जल्द सिंचाई करें</p>             <hr style='margin:6px 0'>             <table style='width:100%; font-size:11px'>             <tr><td><b>Advisory:</b></td>                 <td>Moderate irrigation (15-30mm/week)</td></tr>             <tr><td><b>ET₀:</b></td>                 <td>4.2 mm/day (IMD)</td></tr>             <tr><td><b>Kc (FAO-56):</b></td>                 <td>1.15</td></tr>             <tr><td><b>Ks (stress):</b></td>                 <td>0.4</td></tr>             <tr><td><b>Deficit:</b></td>                 <td>3.1 mm/day</td></tr>             <tr><td><b>Weekly need:</b></td>                 <td><b>21.7 mm/week</b></td></tr>             </table>             <hr style='margin:6px 0'>             <small style='color:gray'>             FAO-56: ETc=1.15×4.2=4.83 mm/day<br>             Deficit = ETc×(1-Ks) =             4.83×0.6             = 3.1 mm/day</small>             </div>             </div>         </div>`)[0];
+                popup_b326322d1d156d4b95204d314f200012.setContent(html_e2c9f51c417207d1679323209835caac);
+            
+        
+
+        marker_6cb4a1f99bfd7bc7420893311da055ee.bindPopup(popup_b326322d1d156d4b95204d314f200012)
+        ;
+
+        
+    
+    
+            marker_6cb4a1f99bfd7bc7420893311da055ee.bindTooltip(
+                `<div>
+                     🟠 जल्द सिंचाई करें — 22mm/week
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6cb4a1f99bfd7bc7420893311da055ee.setIcon(icon_128f170e9c737fd5e5a948b804cc1f9c);
+            
+    
+            var marker_c9045ac96b58e675dca476b31182d384 = L.marker(
+                [28.45, 78.05],
+                {
+}
+            ).addTo(feature_group_9d4f296b66743b5cccd93fb581b7de02);
+        
+    
+            var icon_d1c1b8b42261465b8dfe25c9416f5c5a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c4ef57aecbf8749732e3f52ccc3d010c = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_bec5d913d128c9f5f8def7c5d2d1fd82 = $(`<div id="html_bec5d913d128c9f5f8def7c5d2d1fd82" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:260px'>             <div style='background:#D62828; color:white;                  padding:8px; border-radius:6px 6px 0 0'>             <h4 style='margin:0'>🔴 URGENT</h4>             </div>             <div style='padding:8px; background:#f8f9fa;                  border:1px solid #dee2e6'>             <p style='font-size:14px; color:#D62828;                font-weight:bold; margin:4px 0'>             तुरंत सिंचाई जरूरी!</p>             <hr style='margin:6px 0'>             <table style='width:100%; font-size:11px'>             <tr><td><b>Advisory:</b></td>                 <td>URGENT — irrigate immediately (>30mm/week)</td></tr>             <tr><td><b>ET₀:</b></td>                 <td>4.2 mm/day (IMD)</td></tr>             <tr><td><b>Kc (FAO-56):</b></td>                 <td>1.15</td></tr>             <tr><td><b>Ks (stress):</b></td>                 <td>0.2</td></tr>             <tr><td><b>Deficit:</b></td>                 <td>4.5 mm/day</td></tr>             <tr><td><b>Weekly need:</b></td>                 <td><b>31.5 mm/week</b></td></tr>             </table>             <hr style='margin:6px 0'>             <small style='color:gray'>             FAO-56: ETc=1.15×4.2=4.83 mm/day<br>             Deficit = ETc×(1-Ks) =             4.83×0.8             = 4.5 mm/day</small>             </div>             </div>         </div>`)[0];
+                popup_c4ef57aecbf8749732e3f52ccc3d010c.setContent(html_bec5d913d128c9f5f8def7c5d2d1fd82);
+            
+        
+
+        marker_c9045ac96b58e675dca476b31182d384.bindPopup(popup_c4ef57aecbf8749732e3f52ccc3d010c)
+        ;
+
+        
+    
+    
+            marker_c9045ac96b58e675dca476b31182d384.bindTooltip(
+                `<div>
+                     🔴 तुरंत सिंचाई जरूरी! — 32mm/week
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c9045ac96b58e675dca476b31182d384.setIcon(icon_d1c1b8b42261465b8dfe25c9416f5c5a);
+            
+    
+            var marker_be58a20171cfb86c48426ffeea035830 = L.marker(
+                [27.55, 78.15],
+                {
+}
+            ).addTo(feature_group_9d4f296b66743b5cccd93fb581b7de02);
+        
+    
+            var icon_8e56a1ca0c06453371adc618ffc3c4b3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e6c5f73e553f7aa9c1d09b1140a832f5 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_48f062fd5c1b63475b79de8e07e60093 = $(`<div id="html_48f062fd5c1b63475b79de8e07e60093" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:260px'>             <div style='background:#D62828; color:white;                  padding:8px; border-radius:6px 6px 0 0'>             <h4 style='margin:0'>🔴 URGENT</h4>             </div>             <div style='padding:8px; background:#f8f9fa;                  border:1px solid #dee2e6'>             <p style='font-size:14px; color:#D62828;                font-weight:bold; margin:4px 0'>             तुरंत सिंचाई जरूरी!</p>             <hr style='margin:6px 0'>             <table style='width:100%; font-size:11px'>             <tr><td><b>Advisory:</b></td>                 <td>URGENT — irrigate immediately (>30mm/week)</td></tr>             <tr><td><b>ET₀:</b></td>                 <td>4.2 mm/day (IMD)</td></tr>             <tr><td><b>Kc (FAO-56):</b></td>                 <td>0.85</td></tr>             <tr><td><b>Ks (stress):</b></td>                 <td>0.2</td></tr>             <tr><td><b>Deficit:</b></td>                 <td>4.8 mm/day</td></tr>             <tr><td><b>Weekly need:</b></td>                 <td><b>33.6 mm/week</b></td></tr>             </table>             <hr style='margin:6px 0'>             <small style='color:gray'>             FAO-56: ETc=0.85×4.2=3.57 mm/day<br>             Deficit = ETc×(1-Ks) =             3.57×0.8             = 4.8 mm/day</small>             </div>             </div>         </div>`)[0];
+                popup_e6c5f73e553f7aa9c1d09b1140a832f5.setContent(html_48f062fd5c1b63475b79de8e07e60093);
+            
+        
+
+        marker_be58a20171cfb86c48426ffeea035830.bindPopup(popup_e6c5f73e553f7aa9c1d09b1140a832f5)
+        ;
+
+        
+    
+    
+            marker_be58a20171cfb86c48426ffeea035830.bindTooltip(
+                `<div>
+                     🔴 तुरंत सिंचाई जरूरी! — 34mm/week
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_be58a20171cfb86c48426ffeea035830.setIcon(icon_8e56a1ca0c06453371adc618ffc3c4b3);
+            
+    
+            var marker_3d8a9eba876768dd3741ac9aedb58132 = L.marker(
+                [28.05, 77.55],
+                {
+}
+            ).addTo(feature_group_9d4f296b66743b5cccd93fb581b7de02);
+        
+    
+            var icon_f1e25e63a82b07121f4fb52adc59f447 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e0a1f95ac98b13d9f6961536286db721 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_a470f7ad18ed94e8c6d0b714e30380b5 = $(`<div id="html_a470f7ad18ed94e8c6d0b714e30380b5" style="width: 100.0%; height: 100.0%;">             <div style='font-family:Arial; width:260px'>             <div style='background:#D62828; color:white;                  padding:8px; border-radius:6px 6px 0 0'>             <h4 style='margin:0'>🔴 URGENT</h4>             </div>             <div style='padding:8px; background:#f8f9fa;                  border:1px solid #dee2e6'>             <p style='font-size:14px; color:#D62828;                font-weight:bold; margin:4px 0'>             तुरंत सिंचाई जरूरी!</p>             <hr style='margin:6px 0'>             <table style='width:100%; font-size:11px'>             <tr><td><b>Advisory:</b></td>                 <td>URGENT — irrigate immediately (>30mm/week)</td></tr>             <tr><td><b>ET₀:</b></td>                 <td>4.2 mm/day (IMD)</td></tr>             <tr><td><b>Kc (FAO-56):</b></td>                 <td>1.15</td></tr>             <tr><td><b>Ks (stress):</b></td>                 <td>0.2</td></tr>             <tr><td><b>Deficit:</b></td>                 <td>5.1 mm/day</td></tr>             <tr><td><b>Weekly need:</b></td>                 <td><b>35.7 mm/week</b></td></tr>             </table>             <hr style='margin:6px 0'>             <small style='color:gray'>             FAO-56: ETc=1.15×4.2=4.83 mm/day<br>             Deficit = ETc×(1-Ks) =             4.83×0.8             = 5.1 mm/day</small>             </div>             </div>         </div>`)[0];
+                popup_e0a1f95ac98b13d9f6961536286db721.setContent(html_a470f7ad18ed94e8c6d0b714e30380b5);
+            
+        
+
+        marker_3d8a9eba876768dd3741ac9aedb58132.bindPopup(popup_e0a1f95ac98b13d9f6961536286db721)
+        ;
+
+        
+    
+    
+            marker_3d8a9eba876768dd3741ac9aedb58132.bindTooltip(
+                `<div>
+                     🔴 तुरंत सिंचाई जरूरी! — 36mm/week
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3d8a9eba876768dd3741ac9aedb58132.setIcon(icon_f1e25e63a82b07121f4fb52adc59f447);
+            
+    
+            var feature_group_050f2730e71d511330e59260de4f2891 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var rectangle_51e96a11f687618b257ed712f99bf002 = L.rectangle(
+                [[27.5, 77.5], [28.5, 78.5]],
+                {"bubblingMouseEvents": true, "color": "#E85D04", "dashArray": "8", "dashOffset": null, "fill": false, "fillColor": "#E85D04", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(feature_group_050f2730e71d511330e59260de4f2891);
+        
+    
+            rectangle_51e96a11f687618b257ed712f99bf002.bindTooltip(
+                `<div>
+                     HTIP Study Area — Canal Command Area, Western UP
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_855490c1186abb55bb205eda8b08b5b0 = L.polyline(
+                [[28.5, 77.7], [28.3, 77.8], [28.1, 77.9], [27.9, 78.0], [27.7, 78.1], [27.5, 78.2]],
+                {"bubblingMouseEvents": true, "color": "#0077B6", "dashArray": "5", "dashOffset": null, "fill": false, "fillColor": "#0077B6", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_050f2730e71d511330e59260de4f2891);
+        
+    
+            poly_line_855490c1186abb55bb205eda8b08b5b0.bindTooltip(
+                `<div>
+                     Ganga Canal Network
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_050f2730e71d511330e59260de4f2891.addTo(map_549c50d218dcc909874175895c8e26cc);
+        
+    
+            L.control.fullscreen(
+                {
+  "position": "topright",
+  "title": "Full Screen",
+  "titleCancel": "Exit Full Screen",
+  "forceSeparateButton": false,
+}
+            ).addTo(map_549c50d218dcc909874175895c8e26cc);
+        
+    
+            var measure_control_55fbd21f6de19b59c220c2dc945794ab = new L.Control.Measure(
+                {
+  "position": "bottomleft",
+  "primaryLengthUnit": "meters",
+  "secondaryLengthUnit": "miles",
+  "primaryAreaUnit": "sqmeters",
+  "secondaryAreaUnit": "acres",
+});
+            map_549c50d218dcc909874175895c8e26cc.addControl(measure_control_55fbd21f6de19b59c220c2dc945794ab);
+
+            // Workaround for using this plugin with Leaflet>=1.8.0
+            // https://github.com/ljagis/leaflet-measure/issues/171
+            L.Control.Measure.include({
+                _setCaptureMarkerIcon: function () {
+                    // disable autopan
+                    this._captureMarker.options.autoPanOnFocus = false;
+                    // default function
+                    this._captureMarker.setIcon(
+                        L.divIcon({
+                            iconSize: this._map.getSize().multiplyBy(2)
+                        })
+                    );
+                },
+            });
+
+        
+    
+            var layer_control_8bd2552ea1c23bdcbc523519f2537166_layers = {
+                base_layers : {
+                    "\ud83d\udef0\ufe0f Satellite" : tile_layer_c0b9f579e2b74eb95197a5f9ae3e7db8,
+                    "\ud83d\uddfa\ufe0f Street Map" : tile_layer_31da0a32acb3ac4684eb1ffe43bc2b13,
+                    "\ud83c\uddee\ud83c\uddf3 ISRO Bhuvan Basemap" : tile_layer_2dc2a786d6b1428cc531504d4f8ad95d,
+                },
+                overlays :  {
+                    "\ud83c\udf3e Crop Type Map" : feature_group_7b679c0ec537cb3232404d5b63a7db48,
+                    "\ud83c\udf21\ufe0f Moisture Stress Map" : feature_group_46608a03b5367e10288ddcad0aa33576,
+                    "\ud83d\udca7 Irrigation Advisory" : feature_group_9d4f296b66743b5cccd93fb581b7de02,
+                    "\ud83d\udcd0 Study Area Boundary" : feature_group_050f2730e71d511330e59260de4f2891,
+                },
+            };
+            let layer_control_8bd2552ea1c23bdcbc523519f2537166 = L.control.layers(
+                layer_control_8bd2552ea1c23bdcbc523519f2537166_layers.base_layers,
+                layer_control_8bd2552ea1c23bdcbc523519f2537166_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_549c50d218dcc909874175895c8e26cc);
+
+        
+</script>
+</html>
